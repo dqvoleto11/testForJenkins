@@ -1,12 +1,13 @@
-{
+o{
   "name": "test_23",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build": "echo 'Simulando build...' && mkdir -p dist && echo 'Build generado el $(date)' > dist/build.txt"
   },
+  "author": "dqvoleto11",
+  "license": "ISC"
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "description": ""
 }
