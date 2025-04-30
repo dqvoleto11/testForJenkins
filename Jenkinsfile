@@ -12,7 +12,7 @@ pipeline {
                 checkout scm
                 script {
                     def branch = env.GIT_BRANCH.replaceAll('origin/', '')
-                    def timestamp = (System.currentTimeMillis() / 1000)
+                    def timestamp = System.currentTimeMillis()
                     env.TAG_NAME = "${branch}_${timestamp}"
                 }
             }
