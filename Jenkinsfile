@@ -6,14 +6,13 @@ pipeline {
         GITHUB_REPO = 'dqvoleto11/testForJenkins'
     }
 
-    stages {
         stage('Checkout') {
-            steps {
+        steps {
                 checkout scm
                 script {
                     def branch = env.GIT_BRANCH.replaceAll('origin/', '')
-                    def timestamp = System.currentTimeMillis() / 1000
-                    env.TAG_NAME = "${branch}_${timestamp.toLong()}"
+                    def timestamp = (System.currentTimeMillis() / 1000)
+                    env.TAG_NAME = "${branch}_${timestamp}"
                 }
             }
         }
