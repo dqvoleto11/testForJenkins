@@ -6,8 +6,9 @@ pipeline {
         GITHUB_REPO = 'dqvoleto11/testForJenkins'
     }
 
+    stages {
         stage('Checkout') {
-        steps {
+            steps {
                 checkout scm
                 script {
                     def branch = env.GIT_BRANCH.replaceAll('origin/', '')
