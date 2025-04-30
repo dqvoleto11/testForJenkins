@@ -60,7 +60,6 @@ pipeline {
             }
         }
 
-        // Optional: Upload to GitHub Release (only if needed)
         stage('Upload to GitHub Release') {
             when {
                 expression { return fileExists('build.zip') }
@@ -73,13 +72,13 @@ pipeline {
                         passwordVariable: 'GIT_TOKEN'
                     )
                 ]) {
-                    sh """
+                    sh '''
                         curl -X POST https://api.github.com/repos/${GITHUB_REPO}/releases \
                           -H "Authorization: token ${GIT_TOKEN}" \
                           -H "Content-Type: application/json" \
                           -d '{
-                            "tag_name": "${TAG_NAME}",
-                            "name": "${TAG_NAME}",
+                            "tag_name": "'${TAG_NAME}'",
+                            "name": "'${TAG_NAME}'",
                             "body": "Auto-generated build from Jenkins",
                             "draft": false,
                             "prerelease": false
@@ -91,7 +90,7 @@ pipeline {
                           -H "Authorization: token ${GIT_TOKEN}" \
                           -H "Content-Type: application/zip" \
                           --data-binary @build.zip
-                    """
+                    '''
                 }
             }
         }
